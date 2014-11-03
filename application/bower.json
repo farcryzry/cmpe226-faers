@@ -1,0 +1,27 @@
+{
+  "name": "faers",
+  "version": "0.0.1",
+  "homepage": "https://github.com/farcryzry/cmpe226-faers",
+  "authors": [
+    "farcryzry <farcryzry@gmail.com>"
+  ],
+  "description": "cmpe 226 project",
+  "main": "app.js",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-slider": "*",
+    "font-awesome": "~4.2.0",
+    "bootstrap": "~3.3.0",
+    "jquery-ui": "~1.11.2",
+    "jquery": "~2.1.1",
+    "raphael": "~2.1.2"
+  }
+}
