@@ -2771,7 +2771,7 @@ setDefaults({
 
 
 // TODO: make it work in quirks mode (event corners, all-day height)
-// TODO: test liquid width, especially in IE6
+// TODO: test.js liquid width, especially in IE6
 
 
 function AgendaView(element, calendar, viewName) {
