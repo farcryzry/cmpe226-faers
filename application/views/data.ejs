@@ -1,66 +1,68 @@
+<% layout('layout') -%>
+
 <div class="row">
-<div class="col-xs-12">
-<div class="box">
-<div class="box-header">
-    <h3 class="box-title">FDA Cases</h3>
-</div>
-<!-- /.box-header -->
-<div class="box-body table-responsive">
-<table id="example2" class="table table-bordered table-hover">
-<thead>
-<tr>
-    <th>id</th>
-    <th>fda_date</th>
-    <th>rept_cod</th>
-    <th>mfr_num</th>
-    <th>age</th>
-    <th>gndr_cod</th>
-    <th>wt</th>
-    <th>occp_code</th>
-    <th>reporter_country</th>
-    <th>occr_country</th>
-</tr>
-</thead>
-<tbody>
-<% for (var i=0; i<rows.length; i++) {
-    if(i <100) {
-%>
-<tr>
-    <td><%=rows[i].id%></td>
-    <td><%=rows[i].fda_date%></td>
-    <td><%=rows[i].rept_cod%></td>
-    <td><%=rows[i].mfr_num%></td>
-    <td><%=rows[i].age%></td>
-    <td><%=rows[i].gndr_cod%></td>
-    <td><%=rows[i].wt%></td>
-    <td><%=rows[i].occp_code%></td>
-    <td><%=rows[i].reporter_country%></td>
-    <td><%=rows[i].occr_country%></td>
-</tr>
-<% }
-}
-%>
-</tbody>
-<tfoot>
-<tr>
-    <th>id</th>
-    <th>fda_date</th>
-    <th>rept_cod</th>
-    <th>mfr_num</th>
-    <th>age</th>
-    <th>gndr_cod</th>
-    <th>wt</th>
-    <th>occp_code</th>
-    <th>reporter_country</th>
-    <th>occr_country</th>
-</tr>
-</tfoot>
-</table>
-</div>
-<!-- /.box-body -->
-</div>
-<!-- /.box -->
-</div>
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">FDA Cases</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>fda_date</th>
+                        <th>rept_cod</th>
+                        <th>mfr_num</th>
+                        <th>age</th>
+                        <th>gndr_cod</th>
+                        <th>wt</th>
+                        <th>occp_code</th>
+                        <th>reporter_country</th>
+                        <th>occr_country</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% for (var i = 0; i < rows.length; i++) {
+                    if(i < 100) {
+                    %>
+                    <tr>
+                        <td><%= rows[i].id %></td>
+                        <td><%= rows[i].fda_date %></td>
+                        <td><%= rows[i].rept_cod %></td>
+                        <td><%= rows[i].mfr_num %></td>
+                        <td><%= rows[i].age %></td>
+                        <td><%= rows[i].gndr_cod %></td>
+                        <td><%= rows[i].wt %></td>
+                        <td><%= rows[i].occp_code %></td>
+                        <td><%= rows[i].reporter_country %></td>
+                        <td><%= rows[i].occr_country %></td>
+                    </tr>
+                    <% }
+                    }
+                    %>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>id</th>
+                        <th>fda_date</th>
+                        <th>rept_cod</th>
+                        <th>mfr_num</th>
+                        <th>age</th>
+                        <th>gndr_cod</th>
+                        <th>wt</th>
+                        <th>occp_code</th>
+                        <th>reporter_country</th>
+                        <th>occr_country</th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
 </div>
 
 <script type="text/javascript">

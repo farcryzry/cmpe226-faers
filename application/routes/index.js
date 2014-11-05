@@ -1,19 +1,16 @@
-
-/*
- * GET home page.
- */
-
+var express = require('express');
+var router = express.Router();
 var db = require('../utils/db.js');
 
-exports.index = function(req, res){
-  res.render('index', { title: 'FAERS' })
-};
+router.get('/', function(req, res) {
+  res.render('index', { title: 'FAERS' });
+});
 
-exports.geo = function(req, res){
-  res.render('geo', { title: 'Geo Distribution' })
-};
+router.get('/geo', function(req, res) {
+  res.render('geo', { title: 'FAERS' });
+});
 
-exports.data = function(req, res){
+router.get('/data', function(req, res) {
   db.query('select * from fda_case', function(rows) {
     res.render('data', { title: 'Data Tables', rows: rows });
     for(var i=0; i<rows.length; i++) {
@@ -22,4 +19,6 @@ exports.data = function(req, res){
       }
     }
   });
-};
+});
+
+module.exports = router;
