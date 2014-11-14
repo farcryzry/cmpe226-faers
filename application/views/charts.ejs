@@ -1,0 +1,191 @@
+<% layout('layout') -%>
+
+<section class="col-lg-6 connectedSortable">
+
+    <!-- Map box -->
+    <div class="box box-solid box-primary">
+        <div class="box-header ui-sortable-handle ">
+            <!-- tools box -->
+            <div class="pull-right box-tools">
+                <button class="btn btn-primary btn-sm daterange pull-right hide" data-toggle="tooltip" title="Date range"><i class="fa fa-calendar"></i></button>
+                <button class="btn btn-primary btn-sm pull-right" data-widget='collapse' data-toggle="tooltip" title="Collapse" style="margin-right: 5px;"><i class="fa fa-minus"></i></button>
+            </div><!-- /. tools -->
+
+            <i class="fa fa-map-marker"></i>
+            <h3 class="box-title">
+                Number of FDA Cases in Q4 2004
+            </h3>
+        </div>
+        <div class="box-body">
+            <div id="chart_case" style="height: 500px;"></div>
+            <div class="sliders">
+                <table style="width: 100%">
+                    <tr><td>Alpha Angle</td>
+                        <td><span class="R0-value value"></span></td>
+                        <td><input class="R0" type="range" min="0" max="45" value="15"/></td>
+                    </tr>
+
+                    <tr><td>Beta Angle</td>
+                        <td><span class="R1-value value"></span></td>
+                        <td><input class="R1" type="range" min="0" max="45" value="15"/></td>
+                    </tr>
+                </table>
+            </div>
+        </div><!-- /.box-body-->
+        <div class="box-footer no-border">
+            <div class="well">
+                <code>
+                    SELECT month(fda_date), rept_cod, count(*) FROM faers.fda_case<br/>
+                    WHERE month(fda_date) > 9<br/>
+                    GROUP BY month(fda_date), rept_cod<br/>
+                    ORDER BY month(fda_date), rept_cod
+                </code>
+            </div>
+        </div>
+    </div>
+    <!-- /.box -->
+</section><!-- right col -->
+
+<section class="col-lg-6 connectedSortable">
+
+    <!-- Map box -->
+    <div class="box box-solid box-primary">
+        <div class="box-header ui-sortable-handle ">
+            <!-- tools box -->
+            <div class="pull-right box-tools">
+                <button class="btn btn-primary btn-sm daterange pull-right hide" data-toggle="tooltip" title="Date range"><i class="fa fa-calendar"></i></button>
+                <button class="btn btn-primary btn-sm pull-right" data-widget='collapse' data-toggle="tooltip" title="Collapse" style="margin-right: 5px;"><i class="fa fa-minus"></i></button>
+            </div><!-- /. tools -->
+
+            <i class="fa fa-map-marker"></i>
+            <h3 class="box-title">
+                Number of U.S. and foreign cases in Q4 2004
+            </h3>
+        </div>
+        <div class="box-body">
+            <div id="chart_country" style="height: 500px;"></div>
+            <div class="sliders">
+                <table style="width: 100%">
+                    <tr><td>Alpha Angle</td>
+                        <td><span class="R0-value value"></span></td>
+                        <td><input class="R0" type="range" min="0" max="45" value="15"/></td>
+                    </tr>
+
+                    <tr><td>Beta Angle</td>
+                        <td><span class="R1-value value"></span></td>
+                        <td><input class="R1" type="range" min="0" max="45" value="15"/></td>
+                    </tr>
+                </table>
+            </div>
+        </div><!-- /.box-body-->
+        <div class="box-footer no-border">
+            <div class="well">
+                <code>
+                    SELECT month(fda_date), <br/>
+                    sum(case when reporter_country='US' then 1 else 0 end) as DOMESTIC_COUNT, <br/>
+                    sum(case when reporter_country!='US' AND reporter_country!='COUNTRY NO' then 1 else 0 end) as FOREIGN_COUNT, <br/>
+                    sum(case when reporter_country='COUNTRY NO' then 1 else 0 end) as UNKNOWN_COUNT <br/>
+                    FROM faers.fda_case <br/>
+                    where month(fda_date) > 9 <br/>
+                    group by month(fda_date) <br/>
+                    order by month(fda_date)
+                </code>
+            </div>
+        </div>
+    </div>
+    <!-- /.box -->
+</section><!-- right col -->
+
+
+<section class="col-lg-6 connectedSortable">
+
+    <!-- Map box -->
+    <div class="box box-solid box-primary">
+        <div class="box-header ui-sortable-handle ">
+            <!-- tools box -->
+            <div class="pull-right box-tools">
+                <button class="btn btn-primary btn-sm daterange pull-right hide" data-toggle="tooltip" title="Date range"><i class="fa fa-calendar"></i></button>
+                <button class="btn btn-primary btn-sm pull-right" data-widget='collapse' data-toggle="tooltip" title="Collapse" style="margin-right: 5px;"><i class="fa fa-minus"></i></button>
+            </div><!-- /. tools -->
+
+            <i class="fa fa-map-marker"></i>
+            <h3 class="box-title">
+                Number of cases by reporter type in Q4 2004
+            </h3>
+        </div>
+        <div class="box-body">
+            <div id="chart_reporter_type" style="height: 500px;"></div>
+            <div class="sliders">
+                <table style="width: 100%">
+                    <tr><td>Alpha Angle</td>
+                        <td><span class="R0-value value"></span></td>
+                        <td><input class="R0" type="range" min="0" max="45" value="15"/></td>
+                    </tr>
+
+                    <tr><td>Beta Angle</td>
+                        <td><span class="R1-value value"></span></td>
+                        <td><input class="R1" type="range" min="0" max="45" value="15"/></td>
+                    </tr>
+                </table>
+            </div>
+        </div><!-- /.box-body-->
+        <div class="box-footer no-border">
+            <div class="well">
+                <code>
+                    select month(fda_date), occp_code, count(*) from faers.fda_case <br/>
+                    where month(fda_date) > 9 and occp_code in ('CN', 'LW', 'MD', 'OT', 'PH', 'RN')<br/>
+                    group by month(fda_date), occp_code <br/>
+                    order by month(fda_date), occp_code
+                </code>
+            </div>
+        </div>
+    </div>
+    <!-- /.box -->
+</section><!-- right col -->
+
+
+<section class="col-lg-6 connectedSortable">
+
+    <!-- Map box -->
+    <div class="box box-solid box-primary">
+        <div class="box-header ui-sortable-handle ">
+            <!-- tools box -->
+            <div class="pull-right box-tools">
+                <button class="btn btn-primary btn-sm daterange pull-right hide" data-toggle="tooltip" title="Date range"><i class="fa fa-calendar"></i></button>
+                <button class="btn btn-primary btn-sm pull-right" data-widget='collapse' data-toggle="tooltip" title="Collapse" style="margin-right: 5px;"><i class="fa fa-minus"></i></button>
+            </div><!-- /. tools -->
+
+            <i class="fa fa-map-marker"></i>
+            <h3 class="box-title">
+                Patient outcome(s) for cases in Q4 2004
+            </h3>
+        </div>
+        <div class="box-body">
+            <div id="chart_outcome" style="height: 500px;"></div>
+            <div class="sliders">
+                <table style="width: 100%">
+                    <tr><td>Alpha Angle</td>
+                        <td><span class="R0-value value"></span></td>
+                        <td><input class="R0" type="range" min="0" max="45" value="15"/></td>
+                    </tr>
+
+                    <tr><td>Beta Angle</td>
+                        <td><span class="R1-value value"></span></td>
+                        <td><input class="R1" type="range" min="0" max="45" value="15"/></td>
+                    </tr>
+                </table>
+            </div>
+        </div><!-- /.box-body-->
+        <div class="box-footer no-border">
+            <div class="well">
+                <code>
+                    SELECT month(c.fda_date), o.outc_cod, count(*) FROM faers.outcome o <br/>
+                    inner join faers.fda_case c on o.caseid = c.id where month(c.fda_date) > 9<br/>
+                    group by month(c.fda_date), o.outc_cod<br/>
+                    order by month(c.fda_date), o.outc_cod
+                </code>
+            </div>
+        </div>
+    </div>
+    <!-- /.box -->
+</section><!-- right col -->

@@ -38,16 +38,11 @@
             <!-- /.search form -->
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu">
-                <li class="active">
-                    <a href=/geo>
-                        <i class="fa fa-dashboard"></i> <span>Geographical Distribution</span>
-                    </a>
-                </li>
-                <li class="inactive">
-                    <a href=/data>
-                        <i class="fa fa-dashboard"></i> <span>Table</span>
-                    </a>
-                </li>
+                <% for(var i=0; i<menu.length; i++) {%>
+                    <li class="<%= (url===menu[i].url ? 'active' : 'inactive') %>">
+                        <a href="<%=menu[i].url%>"><%=menu[i].name%></span></a>
+                    </li>
+                <%}%>
             </ul>
             <ul class="sidebar-menu hide">
                 <li class="active">
@@ -66,7 +61,8 @@
                         <i class="fa fa-bar-chart-o"></i>
                         <span>Charts</span>
                         <i class="fa fa-angle-left pull-right"></i>
-                    </a>
+                    </a>o
+
                     <ul class="treeview-menu">
                         <li><a href="pages/charts/morris.html"><i class="fa fa-angle-double-right"></i> Morris</a></li>
                         <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
