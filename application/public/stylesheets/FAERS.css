@@ -1281,6 +1281,7 @@ body > .header .logo .icon {
 .small-box > .small-box-footer {
   position: relative;
   text-align: center;
+  height: 15px;
   padding: 3px 0;
   color: #fff;
   color: rgba(255, 255, 255, 0.8);
@@ -1317,7 +1318,7 @@ body > .header .logo .icon {
   position: absolute;
   top: auto;
   bottom: 5px;
-  right: 5px;
+  right: 20px;
   z-index: 0;
   font-size: 90px;
   color: rgba(0, 0, 0, 0.15);
@@ -3536,4 +3537,8 @@ fieldset[disabled] .btn-vk.active {
 
 .well {
   margin-bottom: 0;
+}
+
+.tab-pane {
+  margin: 15px;
 }

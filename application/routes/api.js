@@ -134,4 +134,25 @@ router.get('/outcome', function(req, res) {
     });
 });
 
+router.get('/total', function(req, res){
+    var sql = "select (select count(*) from faers.fda_case) as case_count, " +
+        "(select COUNT(DISTINCT drugname) from faers.drug) as drug_types," +
+        "(select count(*) from faers.fda_case where gndr_cod = 'M') as male," +
+        "(select count(*) from faers.fda_case where gndr_cod = 'F') as female";
+
+    db.query(sql, function(rows) {
+        res.json(rows[0]);
+    });
+});
+
+router.get('/table/:name', function(req, res){
+    var sql = "select * from " + req.param('name') + " limit 100";
+
+    db.query(sql, function(rows) {
+        res.json(rows);
+    });
+});
+
+
+
 module.exports = router;

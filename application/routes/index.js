@@ -3,7 +3,16 @@ var router = express.Router();
 var db = require('../utils/db.js');
 
 router.get('/', function (req, res) {
-    res.render('index', {url: req.url, menu: menu, title: 'FAERS'});
+    var sql = 'select * from fda_case limit 100 ';
+    db.query(sql, function (rows) {
+        res.render('index', {url: req.url, menu: menu, title: 'FAERS',
+            cases: rows});
+        for (var i = 0; i < rows.length; i++) {
+            if (i < 2) {
+                console.log(rows[i]);
+            }
+        }
+    });
 });
 
 router.get('/geo', function (req, res) {
@@ -11,7 +20,8 @@ router.get('/geo', function (req, res) {
 });
 
 router.get('/data', function (req, res) {
-    db.query('select * from fda_case', function (rows) {
+    var sql = 'select * from fda_case' + ' limit 100 ';
+        db.query(sql, function (rows) {
         res.render('data', {url: req.url, menu: menu, title: 'Data Tables', rows: rows});
         for (var i = 0; i < rows.length; i++) {
             if (i < 10) {
@@ -20,6 +30,7 @@ router.get('/data', function (req, res) {
         }
     });
 });
+
 
 router.get('/charts', function (req, res) {
     res.render('charts', {url: req.url, menu: menu, title: 'FAERS'});

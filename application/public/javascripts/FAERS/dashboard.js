@@ -8,6 +8,52 @@
 
 "use strict";
 $(function () {
+
+    $.get('/api/total', function (data) {
+        $('#case_count').text(data.case_count);
+        $('#drug_types').text(data.drug_types);
+        $('#gender').text(data.male + " / " + data.female);
+    });
+
+    $('a.table-tab').click(function() {
+        var target = $(this).attr('href');
+        var $target = $(target);
+        var table = $target.attr('table');
+
+        $.get('/api/table/' + table, function (data) {
+            console.log(data[0]);
+            $target.html('');
+
+            var columns = _.keys(data[0]);
+
+            var $table = $('<table class="table table-bordered table-hover"><thead>/thead><tbody></tbody><tfoot></tfoot></table>');
+
+            var columnHtml = '<tr>';
+            for(var i=0; i<columns.length; i++) {
+                columnHtml += '<th>' + columns[i] + '</th>';
+            }
+
+            columnHtml += '</tr>';
+            $table.find('thead').append(columnHtml);
+            $table.find('tfoot').append(columnHtml);
+
+            for(var i=0; i<data.length; i++) {
+                var values = _.values(data[i]);
+
+                var rowHtml = '<tr>';
+                for(var j=0; j<values.length; j++) {
+                    rowHtml += '<td>' + values[j] + '</td>';
+                }
+
+                rowHtml += '</tr>';
+                $table.find('tbody').append(rowHtml);
+            }
+
+            $target.append($table);
+        });
+
+    });
+
     //Make the dashboard widgets sortable Using jquery UI
     $(".connectedSortable").sortable({
         placeholder: "sort-highlight",
@@ -91,7 +137,7 @@ $(function () {
                 },
                 onRegionLabelShow: function (e, el, code) {
                     if (typeof visitorsData[code] != "undefined")
-                        el.html(el.html() + ': ' + visitorsData[code] + ' cases');
+                        el.html(el.html() + ': ' + visitorsData[code].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' cases');
                 }
             });
         });
@@ -256,4 +302,6 @@ $(function () {
             //console.log("The element has been unchecked")
         }
     });
-})
+
+
+});
