@@ -26,7 +26,7 @@ $(function () {
 
             var columns = _.keys(data[0]);
 
-            var $table = $('<table class="table table-bordered table-hover"><thead>/thead><tbody></tbody><tfoot></tfoot></table>');
+            var $table = $('<table class="table table-bordered table-hover"><thead><tbody></tbody><tfoot></tfoot></table>');
 
             var columnHtml = '<tr>';
             for(var i=0; i<columns.length; i++) {
