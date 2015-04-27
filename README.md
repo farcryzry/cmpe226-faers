@@ -1,5 +1,6 @@
 FDA Adverse Event Reporting System (FAERS) Database Project
-Demo is here: 226-cmpe.rhcloud.com
+
+Demo is here: http://226-cmpe.rhcloud.com
 
 FDA  adverse event reporting system
 http://www.fda.gov/Drugs/GuidanceComplianceRegulatoryInformation/Surveillance/AdverseDrugEffects/
